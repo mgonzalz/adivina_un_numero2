@@ -2,11 +2,11 @@ def numeroaleatorio(minimo, maximo):
     import random
     numeroaleatorio = random.randint(minimo, maximo)
     return numeroaleatorio
-def solicitar_numero_n1(minimo, maximo):
+def solicitar_numero(minimo, maximo):
     minimo = 0
     maximo = 100
     while True:
-        numero = solicitar_numero_n1("Introduzca un número entre", minimo,"y", maximo,": ")
+        numero = solicitar_numero("Introduzca un número entre", minimo,"y", maximo,": ")
         numero = input(numero)
         try:
             numero = int(numero)
@@ -14,50 +14,34 @@ def solicitar_numero_n1(minimo, maximo):
             pass
         else:
             if minimo <= numero <= maximo:
-                return nivel1
+                return numero
             else:
                 print("El número debe estar entre", minimo, "y", maximo)
-                return solicitar_numero_n1
-def nivel1(minimo, numeroaleatorio, maximo):
-    MINIMO = minimo
-    MAXIMO = maximo
+def nivel1(minimo, maximo):
     intentos = int(0)
     while True:
         def adivinar_numero(numero, minimo, maximo):
             if numero < numeroaleatorio:
                 print("Demasiado pequeño")
-                intentos += 1
             elif numero > numeroaleatorio:
                 print("Demasiado grande")
-                intentos += 1
             else:
                 print("Has acertado")
-                return nivel1
-            if intentos ==3:
-                print(input("¿Necesitas alguna ayuda?"))
-                if input == "si":
-                    ayuda = "El número está entre {} y {}".format(minimo + 10, maximo -10)
-                    print(ayuda)
-                    return nivel2
-                else:
-                    return nivel1
 def menu():
-    print("1. Nivel 1")
-    print("2. Nivel 2")
-    print("3. Nivel 3")
-    print("4. Nivel 4")
-    print("5. Salir")
+    print("1. Nivel Simple")
+    print("2. Nivel Intermedio")
+    print("3. Nivel Avanzado")
+    print("4. Nivel Experto")
     opcion = input("Elige una opción: ")
     if opcion == "1":
-        nivel1()
+        nivel1(0, 100)
+        numeroaleatorio(0, 100)
     elif opcion == "2":
-        return nivel2
+        nivel1(0, 1000)
     elif opcion == "3":
-        return nivel3
+        nivel1(0, 1000000)
     elif opcion == "4":
-        return nivel4
-    elif opcion == "5":
-        return salir
+        nivel1(0, 1000000000000)
     else:
         print("Opción incorrecta")
         return menu
