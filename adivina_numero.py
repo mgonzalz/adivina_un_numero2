@@ -15,16 +15,18 @@ def juega(minimo, maximo):
     import random
     numero = random.randint(minimo, maximo)
     print(numero)
+    ayuda = 0
     while True:
         print("Introduzca un numero entre", minimo, "y", maximo)
         intento = int(input())
         if intento == numero:
-            print("Has acertado")
+            ayuda+=1
+            print("Has acertado. Se han necesitado", ayuda, "intentos")
             break
         elif intento > numero:
             print("El numero es menor")
-            maximo = intento - 1
+            ayuda+=1
         else:
             print("El numero es mayor")
-            minimo = intento + 1
+            ayuda+=1
 intro()
