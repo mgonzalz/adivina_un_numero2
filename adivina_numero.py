@@ -1,16 +1,25 @@
 def intro():
-    print("ADIVINE EL NUMERO")
-    print("1. Nivel Simple")
-    print("2. Nivel Dificil")
+    print ("ADIVINE EL NUMERO")
+    print ("***" * 10)
+    print ("1. Nivel Simple (0-100)")
+    print ("2. Nivel Intermedio (0-1000)")
+    print ("3. Nivel Avanzado (0-1.000.000)")
+    print ("4. Nivel Experto (0 y 1.000.000.000.000)")
+    print ("5. Salir")
     nivel = input("Introduzca el nivel de dificultad: ")
     if nivel == "1":
-        print("Nivel Simple")
-        print("El numero esta entre 0 y 100")
         juega(0, 100)
-    else:
-        print("Nivel Dificil")
-        print("El numero esta entre 0 y 1000")
+    elif nivel == "2":
         juega(0, 1000)
+    elif nivel == "3":
+        juega(0, 1000000)
+    elif nivel == "4":
+        juega(0, 1000000000000)
+    elif nivel == "5":
+        print("Gracias por jugar")
+        exit()
+    else:
+        intro()
 def juega(minimo, maximo):
     import random
     numero = random.randint(minimo, maximo)
@@ -24,9 +33,9 @@ def juega(minimo, maximo):
             print("Has acertado. Se han necesitado", ayuda, "intentos")
             break
         elif intento > numero:
-            print("El numero es menor")
+            print("Demasiado grande")
             ayuda+=1
-        else:
-            print("El numero es mayor")
+        else: # intento < numero
+            print("Demasiado pequeño")
             ayuda+=1
 intro()
