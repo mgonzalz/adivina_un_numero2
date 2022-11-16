@@ -7,24 +7,24 @@ def intro():
     print ("4. Nivel Experto (0 y 1.000.000.000.000)")
     print ("5. Salir")
     nivel = input("Introduzca el nivel de dificultad: ")
+    ayuda = 0
     if nivel == "1":
-        juega(0, 100)
+        juega(0, 100, 0)
     elif nivel == "2":
-        juega(0, 1000)
+        juega(0, 1000, 0)
     elif nivel == "3":
-        juega(0, 1000000)
+        juega(0, 1000000, 0)
     elif nivel == "4":
-        juega(0, 1000000000000)
+        juega(0, 1000000000000, 0)
     elif nivel == "5":
         print("Gracias por jugar")
         exit()
     else:
         intro()
-def juega(minimo, maximo):
+def juega(minimo, maximo, ayuda):
     import random
     numero = random.randint(minimo, maximo)
     print (numero)
-    ayuda = 0 #HACER PARA QUE SE REPITA LA FUNCION DE VARIABLE Y NO SE ACTUALICE SIEMPRE QUE SE REPITA A CERO
     while True:
         print ("Introduzca un numero entre", minimo, "y", maximo)
         intento = int(input())
@@ -36,23 +36,33 @@ def juega(minimo, maximo):
         elif intento < numero:
             print ("El numero es mayor")
             ayuda+=1
+            if ayuda == 5:
+                ayudaf(minimo, maximo, numero)
         elif intento > numero:
             print ("Demasiado grande")
             ayuda+=1
+            if ayuda == 5:
+                ayudaf(minimo, maximo, numero)
         elif intento < numero:
             print ("Demasiado pequeño")
             ayuda+=1
         else:
-            return juega() #ARREGLAR QUE SI SE PONE LETRA U OTRA COSA QUE NO SEA NUMERO PERMITA INTENTARLO OTRA VEZ
-def ayuda(minimo, maximo, ayuda):
-    if ayuda == 5:
-        print (input("¿Necesita ayuda? (S/N): "))
-        if ayuda == "S":
-            print ("El numero está entre", maximo -(maximo/2), "y", minimo -(minimo/2))
-        elif ayuda == "N":
-            juega(minimo, maximo, ayuda)
+            return
+def ayudaf(minimo, maximo, numero):
+    pregunta = input("¿Necesita ayuda? (S/N): ")
+    print (pregunta)
+    MIN = minimo
+    MAX = maximo
+    import random
+    nuevomin = random.randint(MIN, numero)
+    nuevomax = random.randint(numero, MAX)
+    if pregunta == "S" or pregunta == "s":
+        print ("El numero está entre",nuevomin, "y", nuevomax)
+        juega(nuevomin, nuevomax, 0)
+    elif pregunta == "N" or pregunta == "n":
+        juega()
     else:
-        juega(minimo, maximo)
+        ayudaf()
 def victoria():
     NomUsuario = input("Introduzca su nombre: ")
     print (NomUsuario)
