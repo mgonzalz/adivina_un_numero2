@@ -31,7 +31,7 @@ def juega(minimo, maximo, ayuda):
         if intento == numero:
             ayuda+=1
             print ("Has acertado. Se han necesitado", ayuda, "intentos")
-            victoria()
+            victoria(ayuda)
             break
         elif intento < numero:
             print ("El numero es mayor")
@@ -46,10 +46,8 @@ def juega(minimo, maximo, ayuda):
         elif intento < numero:
             print ("Demasiado pequeño")
             ayuda+=1
-        elif intento > maximo or intento < minimo:
-            return True
         else:
-            return
+            return True
 def ayudaf(minimo, maximo, numero):
     pregunta = input("¿Necesita ayuda? (S/N): ")
     print (pregunta)
@@ -60,21 +58,28 @@ def ayudaf(minimo, maximo, numero):
     nuevomax = random.randint(numero, MAX)
     if pregunta == "S" or pregunta == "s":
         print ("El numero está entre",nuevomin, "y", nuevomax)
-        juega(nuevomin, nuevomax, 0)
     elif pregunta == "N" or pregunta == "n":
         juega()
     else:
         ayudaf()
-def victoria():
+def victoria(ayuda):
     NomUsuario = input("Introduzca su nombre: ")
     print (NomUsuario)
-    print (NomUsuario, input(",¿Quiere que se guarde su puntuación? (S/N):"))
-    if NomUsuario == "S":
+    print (NomUsuario, ",¿Quiere que se guarde su puntuación? (S/N):")
+    respuesta = input()
+    if respuesta == "S":
+        Ganador = NomUsuario + " " + str(ayuda)
+        list.append(Ganador)
+        for Ganador in list:
+            print ("Nombre: ", NomUsuario, "Intentos: ", ayuda)
         print ("Su puntuación se ha guardado")
-        lista.append(NomUsuario + " " + ayuda)
-        print (lend(lista))     #ARREGLAR LA LISTA
-    elif NomUsuario == "N":
+    elif respuesta == "N":
         print ("Su puntuación no se ha guardado")
         intro()
-
+    else:
+        victoria()
+#DETERMINAR UN N MAXIMO DE INTENTOS
+#NUMERO ALEATORIO SE RESETEA
+#MOSTRAR LISTA DE PUNTUACIONES
+#INTELIGENCIA ARTIFICIAL
 intro()
