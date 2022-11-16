@@ -46,6 +46,8 @@ def juega(minimo, maximo, ayuda):
         elif intento < numero:
             print ("Demasiado pequeño")
             ayuda+=1
+        elif intento > maximo or intento < minimo:
+            return True
         else:
             return
 def ayudaf(minimo, maximo, numero):
