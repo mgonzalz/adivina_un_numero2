@@ -21,13 +21,23 @@ def intro():
         exit()
     else:
         intro()
-def juega(minimo, maximo, ayuda):
+def numero_aleatorio(minimo, maximo):
     import random
     numero = random.randint(minimo, maximo)
+    return numero
+def juega(minimo, maximo, ayuda):
+    numero = numero_aleatorio(minimo, maximo)
     print (numero)
     while True:
         print ("Introduzca un numero entre", minimo, "y", maximo)
-        intento = int(input())
+        intento = input()
+        try:
+            intento = int(intento)
+        except:
+            pass
+        else:
+            if minimo <= intento <= maximo:
+                break
         if intento == numero:
             ayuda+=1
             print ("Has acertado. Se han necesitado", ayuda, "intentos")
@@ -37,18 +47,18 @@ def juega(minimo, maximo, ayuda):
             print ("El numero es mayor")
             ayuda+=1
             if ayuda == 5:
-                ayudaf(minimo, maximo, numero)
+                ayudaf(minimo, maximo, numero, ayuda)
         elif intento > numero:
             print ("Demasiado grande")
             ayuda+=1
             if ayuda == 5:
-                ayudaf(minimo, maximo, numero)
+                ayudaf(minimo, maximo, numero, ayuda)
         elif intento < numero:
             print ("Demasiado pequeño")
             ayuda+=1
         else:
             return True
-def ayudaf(minimo, maximo, numero):
+def ayudaf(minimo, maximo, numero, ayuda):
     pregunta = input("¿Necesita ayuda? (S/N): ")
     print (pregunta)
     MIN = minimo
@@ -57,11 +67,12 @@ def ayudaf(minimo, maximo, numero):
     nuevomin = random.randint(MIN, numero)
     nuevomax = random.randint(numero, MAX)
     if pregunta == "S" or pregunta == "s":
-        print ("El numero está entre",nuevomin, "y", nuevomax)
+        print ("El numero está se encuentra entre los siguientes valores:",nuevomin, ", ", nuevomax)
+        juega(nuevomin, nuevomax, ayuda)
     elif pregunta == "N" or pregunta == "n":
         juega()
     else:
-        ayudaf()
+        return ayudaf(minimo, maximo, numero, ayuda)
 def victoria(ayuda):
     NomUsuario = input("Introduzca su nombre: ")
     print (NomUsuario)
@@ -79,7 +90,6 @@ def victoria(ayuda):
     else:
         victoria()
 #DETERMINAR UN N MAXIMO DE INTENTOS
-#NUMERO ALEATORIO SE RESETEA
 #MOSTRAR LISTA DE PUNTUACIONES
 #INTELIGENCIA ARTIFICIAL
 intro()
