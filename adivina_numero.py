@@ -1,4 +1,4 @@
-def intro():
+def intro(): #MENU
     print ("ADIVINE EL NUMERO")
     print ("***" * 10)
     print ("1. Nivel Simple (0-100)")
@@ -21,11 +21,11 @@ def intro():
         exit()
     else:
         intro()
-def numero_aleatorio(minimo, maximo):
+def numero_aleatorio(minimo, maximo): #NUMERO ALEATORIO
     import random
     numero = random.randint(minimo, maximo)
     return numero
-def numero_intento(minimo, maximo):
+def numero_intento(minimo, maximo): #PREGUNTAR NUMERO Y COMPROBAR SI ES VALIDO
     while True:
         intento = input("Introduzca un número entre " + str(minimo) + " y " + str(maximo) + ": ")
         try:
@@ -33,10 +33,9 @@ def numero_intento(minimo, maximo):
         except:
             pass
         else:
-            # Realizar la comparación
             if minimo <= intento <= maximo:
                 return intento
-def juega(minimo, maximo, ayuda, numero):
+def juega(minimo, maximo, ayuda, numero): #JUEGO
     print (numero)
     while True:
         intento = numero_intento(minimo, maximo)
@@ -61,7 +60,7 @@ def juega(minimo, maximo, ayuda, numero):
                 maximointentos(minimo, maximo, ayuda)
         else:
             return True
-def ayudaf(minimo, maximo, numero, ayuda):
+def ayudaf(minimo, maximo, numero, ayuda): #SI SE SOLICITA AYUDA
     pregunta = input("¿Necesita ayuda? (S/N): ")
     print (pregunta)
     MIN = minimo
@@ -76,7 +75,7 @@ def ayudaf(minimo, maximo, numero, ayuda):
         juega()
     else:
         return ayudaf(minimo, maximo, numero, ayuda)
-def maximointentos(minimo, maximo, ayuda):
+def maximointentos(minimo, maximo, ayuda): #MAXIMO NUMERO DE INTENTOS
     print ("Has perdido. Alcanzaste el máximo numero de intentos:", ayuda)
     p = input("¿Quiere volver a jugar? (S/N): ")
     print (p)
@@ -87,7 +86,7 @@ def maximointentos(minimo, maximo, ayuda):
         exit()
     else:
         return maximointentos(minimo, maximo, ayuda)
-def victoria(ayuda):
+def victoria(ayuda): #LISTA DE GANADORES
     NomUsuario = input("Introduzca su nombre: ")
     print (NomUsuario)
     print (NomUsuario, ",¿Quiere que se guarde su puntuación? (S/N):")
@@ -110,5 +109,4 @@ def victoria(ayuda):
         intro()
     else:
         victoria()
-#INTELIGENCIA ARTIFICIAL
 intro()
