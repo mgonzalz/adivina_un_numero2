@@ -11,11 +11,11 @@ def intro():
     if nivel == "1":
         juega(0, 100, 0, numero_aleatorio(0, 100))
     elif nivel == "2":
-        juega(0, 1000, 0)
+        juega(0, 1000, 0, numero_aleatorio(0, 1000))
     elif nivel == "3":
-        juega(0, 1000000, 0)
+        juega(0, 1000000, 0, numero_aleatorio(0, 1000000))
     elif nivel == "4":
-        juega(0, 1000000000000, 0)
+        juega(0, 1000000000000, 0, numero_aleatorio(0, 1000000000000))
     elif nivel == "5":
         print("Gracias por jugar")
         exit()
@@ -77,17 +77,16 @@ def ayudaf(minimo, maximo, numero, ayuda):
     else:
         return ayudaf(minimo, maximo, numero, ayuda)
 def maximointentos(minimo, maximo, ayuda):
-    if ayuda == 10:
-        print ("Has perdido. Alcanzaste el máximo numero de intentos:", ayuda)
-        p = input("¿Quiere volver a jugar? (S/N): ")
-        print (p)
-        if p == "S" or p == "s":
-            intro()
-        elif p == "N" or p == "n":
-            print ("Gracias por jugar")
-            exit()
-        else:
-            return maximointentos(minimo, maximo, ayuda)
+    print ("Has perdido. Alcanzaste el máximo numero de intentos:", ayuda)
+    p = input("¿Quiere volver a jugar? (S/N): ")
+    print (p)
+    if p == "S" or p == "s":
+        intro()
+    elif p == "N" or p == "n":
+        print ("Gracias por jugar")
+        exit()
+    else:
+        return maximointentos(minimo, maximo, ayuda)
 def victoria(ayuda):
     NomUsuario = input("Introduzca su nombre: ")
     print (NomUsuario)
